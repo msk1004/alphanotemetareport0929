@@ -41,12 +41,12 @@
   h2 .pink { color: var(--pink); }
   h3 { font-size: 15px; font-weight: 700; margin: 26px 0 8px; }
 
-  .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
   .kpi { background: var(--light); border: 1px solid var(--border); border-radius: 10px; padding: 16px 12px; text-align: center; }
   .kpi.hl { background: linear-gradient(135deg, var(--pink), var(--pink-dark)); border: none; color: #fff; }
   .kpi .k { font-size: 11px; color: var(--mid); }
   .kpi.hl .k { color: rgba(255,255,255,.85); }
-  .kpi .v { font-size: 26px; font-weight: 900; line-height: 1.2; margin-top: 4px; }
+  .kpi .v { font-size: 24px; font-weight: 900; line-height: 1.2; margin-top: 4px; }
   .kpi .v small { font-size: 12px; font-weight: 700; margin-left: 2px; }
   .kpi .n { font-size: 10px; color: var(--mid); margin-top: 2px; }
   .kpi.hl .n { color: rgba(255,255,255,.8); }
@@ -102,6 +102,33 @@
   .footer { padding: 28px 56px; background: var(--ink); color: rgba(255,255,255,.7); font-size: 12px; }
   .footer strong { color: #fff; }
 
+  .legend { display:flex; flex-wrap:wrap; gap:16px; font-size:12px; color:var(--mid); margin-bottom:20px; align-items:center; }
+  .legend i { display:inline-block; width:12px; height:12px; border-radius:3px; margin-right:6px; vertical-align:-1px; }
+  .legend .tot { margin-left:auto; font-weight:700; color:var(--ink); }
+  i.w { background:var(--pink); } i.l { background:var(--lp); }
+  .ig { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:20px; }
+  .igc { background:var(--light); border:1px solid var(--border); border-radius:12px; padding:20px; }
+  .igt { font-size:13px; font-weight:900; margin-bottom:14px; padding-left:10px; border-left:4px solid var(--pink); }
+  .ir { display:flex; align-items:center; gap:8px; margin-bottom:6px; font-size:12px; }
+  .ir .nm { width:56px; flex-shrink:0; color:var(--mid); }
+  .ir .tr { flex:1; }
+  .ir .sb { display:flex; height:20px; border-radius:3px; overflow:hidden; min-width:4px; }
+  .ir .sb i { display:block; }
+  .ir .val { width:80px; text-align:right; flex-shrink:0; }
+  .ir .val em { font-style:normal; color:var(--mid); font-size:10px; margin-left:4px; }
+  .igs { font-size:12px; color:var(--mid); margin-top:12px; line-height:1.7; }
+  .igs b { color:var(--pink-dark); font-size:14px; }
+  .dn { display:flex; align-items:center; gap:18px; }
+  .ring { width:118px; height:118px; border-radius:50%; flex-shrink:0; position:relative; }
+  .ring::after { content:''; position:absolute; inset:24px; background:var(--light); border-radius:50%; }
+  .ring span { position:absolute; inset:0; z-index:1; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; font-size:10px; color:var(--mid); line-height:1.3; }
+  .ring span b { font-size:17px; color:var(--ink); }
+  .dn ul { list-style:none; font-size:12px; flex:1; }
+  .dn li { display:flex; align-items:center; gap:6px; padding:3px 0; }
+  .dn li i { width:10px; height:10px; border-radius:2px; flex-shrink:0; }
+  .dn li b { margin-left:auto; } .dn li small { color:var(--mid); font-size:10px; width:34px; text-align:right; }
+  @media (max-width:680px){ .ig{grid-template-columns:1fr;} .legend .tot{margin-left:0;width:100%;} }
+  @media print { .ig{grid-template-columns:1fr 1fr;} }
   @media (max-width: 680px) {
     .cover, .section, .footer { padding-left: 20px; padding-right: 20px; }
     .cover h1 { font-size: 24px; }
@@ -131,10 +158,12 @@
     <span class="label">SUMMARY</span>
     <h2>配信結果のサマリー</h2>
     <div class="kpis">
+      <div class="kpi"><div class="k">消化金額</div><div class="v">¥100,000</div><div class="n">Meta広告 総額</div></div>
       <div class="kpi"><div class="k">合計インプレッション</div><div class="v">27,708</div><div class="n">WEB 1,963 ／ LP 25,745</div></div>
       <div class="kpi"><div class="k">合計クリック（すべて）</div><div class="v">572</div><div class="n">WEB 44 ／ LP 528</div></div>
       <div class="kpi"><div class="k">合計CV数（Contact）</div><div class="v">72</div><div class="n">WEB 1 ／ LP 71</div></div>
-      <div class="kpi hl"><div class="k">CV単価（LP）</div><div class="v">¥1,064</div><div class="n">WEB記事 ¥4,406</div></div>
+      <div class="kpi hl"><div class="k">全体CV単価</div><div class="v">¥1,389</div><div class="n">消化金額 ÷ CV数</div></div>
+      <div class="kpi"><div class="k">CV単価（配信管理画面値）</div><div class="v">LP ¥1,064</div><div class="n">WEB記事 ¥4,406</div></div>
     </div>
     <p class="foot">※ CV数はMetaピクセルの「Contact」イベント発火数です（詳細は「ご留意事項」をご参照ください）。</p>
   </section>
@@ -172,8 +201,10 @@
       <tbody>
         <tr><td>インプレッション</td><td>1,963</td><td>25,745</td></tr>
         <tr><td>リーチ</td><td>1,374</td><td>10,263</td></tr>
+        <tr><td>リンククリック</td><td>39</td><td>447</td></tr>
         <tr><td>クリック（すべて）</td><td>44</td><td>528</td></tr>
-        <tr><td>クリック率</td><td>2.24%</td><td>2.05%</td></tr>
+        <tr><td>リンククリック率</td><td>1.99%</td><td>1.74%</td></tr>
+        <tr><td>クリック率（すべて）</td><td>2.24%</td><td>2.05%</td></tr>
         <tr><td>インプレッション単価（CPM）</td><td>¥2,244</td><td>¥2,934</td></tr>
         <tr><td>クリック単価（リンククリック）</td><td>¥112</td><td>¥169</td></tr>
         <tr><td>ALLクリック単価</td><td>¥100</td><td>¥143</td></tr>
@@ -190,6 +221,39 @@
   </section>
 
   <section class="section">
+    <span class="label">AUDIENCE</span>
+    <h2>誰に届いたか<span class="pink">（リンククリックの内訳）</span></h2>
+    <div class="legend"><span><i class="w"></i>エス通WEB遷移</span><span><i class="l"></i>LP遷移</span><span class="tot">合計 486.0リンククリック（WEB 39 ／ LP 447）</span></div>
+
+    <div class="ig">
+      <div class="igc">
+        <div class="igt">年齢別</div>
+        <div class="ir"><span class="nm">25–34</span><div class="tr"><div class="sb" style="width:17.7%"><i class="w" style="flex:1"></i><i class="l" style="flex:35"></i></div></div><span class="val"><b>36</b>件<em>7.4%</em></span></div><div class="ir"><span class="nm">35–44</span><div class="tr"><div class="sb" style="width:75.9%"><i class="w" style="flex:10"></i><i class="l" style="flex:144"></i></div></div><span class="val"><b>154</b>件<em>31.7%</em></span></div><div class="ir"><span class="nm">45–54</span><div class="tr"><div class="sb" style="width:100.0%"><i class="w" style="flex:21"></i><i class="l" style="flex:182"></i></div></div><span class="val"><b>203</b>件<em>41.8%</em></span></div><div class="ir"><span class="nm">55–64</span><div class="tr"><div class="sb" style="width:45.8%"><i class="w" style="flex:7"></i><i class="l" style="flex:86"></i></div></div><span class="val"><b>93</b>件<em>19.1%</em></span></div>
+        <p class="igs">35〜54歳で <b>73%</b>。サロン経営者層の中核世代に集中しました。</p>
+      </div>
+      <div class="igc">
+        <div class="igt">性別</div>
+        <div class="dn"><div class="ring" style="background:conic-gradient(#E8638A 0.00% 85.60%,#4a4a68 85.60% 100.00%)"><span>女性<br><b>86%</b></span></div><ul><li><i style="background:#E8638A"></i>女性<b>85.6%</b><small>416件</small></li><li><i style="background:#4a4a68"></i>男性<b>14.4%</b><small>70件</small></li></ul></div>
+        <p class="igs">女性が約 <b>86%</b>。エステ業界の担い手構成と整合します。</p>
+      </div>
+    </div>
+
+    <div class="ig">
+      <div class="igc">
+        <div class="igt">プラットフォーム別</div>
+        <div class="dn"><div class="ring" style="background:conic-gradient(#E8638A 0.00% 82.72%,#5B45C8 82.72% 95.06%,#8a8aa8 95.06% 100.00%)"><span>Instagram<br><b>83%</b></span></div><ul><li><i style="background:#E8638A"></i>Instagram<b>82.7%</b><small>402件</small></li><li><i style="background:#5B45C8"></i>Threads<b>12.3%</b><small>60件</small></li><li><i style="background:#8a8aa8"></i>Facebook<b>4.9%</b><small>24件</small></li></ul></div>
+        <p class="igs">Instagramが大半。Threadsからも一定数の反応がありました。</p>
+      </div>
+      <div class="igc">
+        <div class="igt">都道府県別 TOP10</div>
+        <div class="ir"><span class="nm">東京都</span><div class="tr"><div class="sb" style="width:100.0%"><i class="w" style="flex:3"></i><i class="l" style="flex:55"></i></div></div><span class="val"><b>58</b>件<em>11.9%</em></span></div><div class="ir"><span class="nm">大阪府</span><div class="tr"><div class="sb" style="width:63.8%"><i class="w" style="flex:3"></i><i class="l" style="flex:34"></i></div></div><span class="val"><b>37</b>件<em>7.6%</em></span></div><div class="ir"><span class="nm">愛知県</span><div class="tr"><div class="sb" style="width:56.9%"><i class="w" style="flex:1"></i><i class="l" style="flex:32"></i></div></div><span class="val"><b>33</b>件<em>6.8%</em></span></div><div class="ir"><span class="nm">北海道</span><div class="tr"><div class="sb" style="width:51.7%"><i class="w" style="flex:1"></i><i class="l" style="flex:29"></i></div></div><span class="val"><b>30</b>件<em>6.2%</em></span></div><div class="ir"><span class="nm">兵庫県</span><div class="tr"><div class="sb" style="width:50.0%"><i class="w" style="flex:3"></i><i class="l" style="flex:26"></i></div></div><span class="val"><b>29</b>件<em>6.0%</em></span></div><div class="ir"><span class="nm">神奈川県</span><div class="tr"><div class="sb" style="width:36.2%"><i class="w" style="flex:2"></i><i class="l" style="flex:19"></i></div></div><span class="val"><b>21</b>件<em>4.3%</em></span></div><div class="ir"><span class="nm">静岡県</span><div class="tr"><div class="sb" style="width:32.8%"><i class="w" style="flex:4"></i><i class="l" style="flex:15"></i></div></div><span class="val"><b>19</b>件<em>3.9%</em></span></div><div class="ir"><span class="nm">埼玉県</span><div class="tr"><div class="sb" style="width:31.0%"><i class="w" style="flex:1"></i><i class="l" style="flex:17"></i></div></div><span class="val"><b>18</b>件<em>3.7%</em></span></div><div class="ir"><span class="nm">千葉県</span><div class="tr"><div class="sb" style="width:31.0%"><i class="w" style="flex:4"></i><i class="l" style="flex:14"></i></div></div><span class="val"><b>18</b>件<em>3.7%</em></span></div><div class="ir"><span class="nm">広島県</span><div class="tr"><div class="sb" style="width:29.3%"><i class="w" style="flex:1"></i><i class="l" style="flex:16"></i></div></div><span class="val"><b>17</b>件<em>3.5%</em></span></div>
+        <p class="igs">全国 <b>44都道府県</b> から反応。東京・大阪・愛知の3都府県で <b>26%</b>、残りは全国に分散しています。</p>
+      </div>
+    </div>
+    <p class="foot">※ 各数値はリンククリック数ベース（エス通WEB遷移＋LP遷移の合算、バーは内訳）。</p>
+  </section>
+
+  <section class="section">
     <span class="label">INSIGHT</span>
     <h2>レポート<span class="pink">所感</span></h2>
     <ul class="insight">
@@ -197,6 +261,7 @@
       <li><div class="num">2</div><div><b>CV単価はLP遷移が ¥1,064 と良好。CV獲得の主力はLP</b><span>「無料で資料請求」を明示したクリエイティブとLPの組み合わせで、71件のCV（Contact）を獲得。CV単価はエス通WEB遷移の約1/4の水準でした。</span></div></li>
       <li><div class="num">3</div><div><b>エス通WEBは「理解・信頼醸成」の役割。CVでの評価は限定的</b><span>記事遷移はCV数1件（配信ボリュームも約2,000imp）のため、単価の比較は参考値です。クリック単価はLPより低く、記事を読んで理解を深めてもらう入口としては効率的に機能しました。</span></div></li>
       <li><div class="num">4</div><div><b>LPは配信ボリュームを確保でき、リーチ拡大にも寄与</b><span>約25,700impの配信に対し約10,300名へリーチ。認知拡大と反応獲得を同時に進められました。</span></div></li>
+    <li><div class="num">5</div><div><b>届いた層は「35〜54歳・女性・Instagram」が中心で、全国に広く分散</b><span>年齢は35〜54歳で約73%、女性が約86%、Instagram経由が約83%でした。東京・大阪・愛知に偏らず全国44都道府県から反応があり、地方サロンにも訴求できています。</span></div></li>
     </ul>
 
     <h3>今後のご提案</h3>
