@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>Meta広告配信レポート | アルファノート株式会社</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pink: #E8638A;
+    --pink-light: #FDE8EF;
+    --pink-dark: #C94870;
+    --ink: #1a1a2e;
+    --mid: #4a4a68;
+    --light: #f5f5f7;
+    --border: #e0e0e8;
+    --lp: #5B45C8;
+    --lp-light: #ECE8FA;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Noto Sans JP', sans-serif; background: #f0f0f5; color: var(--ink); font-size: 14px; line-height: 1.85; }
+  .page { max-width: 860px; margin: 0 auto; background: #fff; }
+
+  .cover { background: linear-gradient(135deg, #1a1a2e 0%, #2d1b3d 55%, #3d1a2e 100%); color: #fff; padding: 64px 56px 44px; position: relative; overflow: hidden; }
+  .cover::before { content: ''; position: absolute; top: -90px; right: -90px; width: 360px; height: 360px; background: radial-gradient(circle, rgba(232,99,138,.28) 0%, transparent 70%); border-radius: 50%; }
+  .cover > * { position: relative; }
+  .badge { display: inline-block; background: var(--pink); font-size: 11px; font-weight: 700; padding: 5px 14px; border-radius: 20px; letter-spacing: .05em; }
+  .cover-eyebrow { margin-top: 44px; font-size: 12px; letter-spacing: .15em; color: var(--pink); font-weight: 500; }
+  .cover h1 { font-size: 32px; font-weight: 900; line-height: 1.35; margin: 10px 0 18px; }
+  .cover h1 span { color: #FF9BAD; }
+  .cover p.sub { font-size: 14px; color: rgba(255,255,255,.75); max-width: 560px; }
+  .cover-footer { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap; margin-top: 44px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,.18); font-size: 12px; color: rgba(255,255,255,.65); }
+  .cover-footer strong { display: block; color: #fff; font-size: 16px; margin-top: 2px; }
+  .cover-footer .from { text-align: right; }
+  .cover-footer .from strong { font-size: 13px; }
+
+  .section { padding: 48px 56px; border-bottom: 1px solid var(--border); }
+  .label { display: inline-block; background: var(--pink); color: #fff; font-size: 10px; font-weight: 700; padding: 3px 12px; border-radius: 4px; letter-spacing: .1em; margin-bottom: 12px; }
+  h2 { font-size: 22px; font-weight: 900; line-height: 1.35; margin-bottom: 24px; }
+  h2 .pink { color: var(--pink); }
+  h3 { font-size: 15px; font-weight: 700; margin: 26px 0 8px; }
+
+  .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .kpi { background: var(--light); border: 1px solid var(--border); border-radius: 10px; padding: 16px 12px; text-align: center; }
+  .kpi.hl { background: linear-gradient(135deg, var(--pink), var(--pink-dark)); border: none; color: #fff; }
+  .kpi .k { font-size: 11px; color: var(--mid); }
+  .kpi.hl .k { color: rgba(255,255,255,.85); }
+  .kpi .v { font-size: 26px; font-weight: 900; line-height: 1.2; margin-top: 4px; }
+  .kpi .v small { font-size: 12px; font-weight: 700; margin-left: 2px; }
+  .kpi .n { font-size: 10px; color: var(--mid); margin-top: 2px; }
+  .kpi.hl .n { color: rgba(255,255,255,.8); }
+
+  .creatives { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .cr { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; background: #fff; }
+  .cr img { display: block; width: 100%; height: auto; }
+  .cr .body { padding: 16px 18px 18px; }
+  .tag { display: inline-block; font-size: 10px; font-weight: 700; color: #fff; padding: 2px 10px; border-radius: 4px; margin-bottom: 6px; }
+  .tag.web { background: var(--pink); }
+  .tag.lp { background: var(--lp); }
+  .cr h4 { font-size: 14px; font-weight: 700; line-height: 1.5; margin-bottom: 6px; }
+  .cr p { font-size: 12px; color: var(--mid); line-height: 1.7; }
+  .cr .dest { margin-top: 10px; font-size: 12px; font-weight: 700; padding: 8px 10px; border-radius: 6px; }
+  .cr .dest.web { background: var(--pink-light); color: var(--pink-dark); }
+  .cr .dest.lp { background: var(--lp-light); color: var(--lp); }
+
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th, td { padding: 11px 14px; border-bottom: 1px solid var(--border); text-align: right; }
+  th:first-child, td:first-child { text-align: left; }
+  thead th { font-size: 12px; color: #fff; }
+  thead th:nth-child(1) { background: var(--ink); }
+  thead th:nth-child(2) { background: var(--pink); }
+  thead th:nth-child(3) { background: var(--lp); }
+  tbody tr:nth-child(even) { background: var(--light); }
+  tr.key td { font-weight: 900; background: #fff8fa; }
+  tr.key td:first-child { color: var(--pink-dark); }
+  .foot { font-size: 11px; color: var(--mid); margin-top: 10px; line-height: 1.7; }
+
+  .bars { margin-top: 28px; }
+  .bar-title { font-size: 12px; font-weight: 700; margin-bottom: 8px; }
+  .bar-row { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; font-size: 12px; }
+  .bar-row .nm { width: 96px; flex-shrink: 0; color: var(--mid); }
+  .bar-track { flex: 1; background: var(--light); border-radius: 4px; height: 26px; }
+  .bar { height: 26px; border-radius: 4px; color: #fff; font-weight: 700; font-size: 12px; line-height: 26px; padding-left: 10px; white-space: nowrap; min-width: 84px; }
+  .bar.web { background: var(--pink); }
+  .bar.lp { background: var(--lp); }
+
+  .note { background: #fffbea; border: 1px solid #f0e2a0; border-left: 4px solid #e0b400; border-radius: 0 8px 8px 0; padding: 20px 24px; }
+  .note h3 { margin-top: 0; }
+  .note p { font-size: 13px; color: #5a4a00; margin-top: 8px; }
+
+  .insight { list-style: none; }
+  .insight li { display: flex; gap: 14px; padding: 16px 0; border-bottom: 1px solid rgba(232,99,138,.18); }
+  .insight li:last-child { border-bottom: none; }
+  .insight .num { flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; background: var(--pink); color: #fff; font-weight: 900; font-size: 12px; display: flex; align-items: center; justify-content: center; margin-top: 2px; }
+  .insight b { display: block; font-size: 14px; margin-bottom: 2px; }
+  .insight span { font-size: 13px; color: var(--mid); }
+
+  .next { background: var(--light); border-radius: 10px; padding: 20px 24px; margin-top: 8px; }
+  .next li { margin-left: 18px; font-size: 13px; color: var(--mid); padding: 3px 0; }
+
+  .footer { padding: 28px 56px; background: var(--ink); color: rgba(255,255,255,.7); font-size: 12px; }
+  .footer strong { color: #fff; }
+
+  @media (max-width: 680px) {
+    .cover, .section, .footer { padding-left: 20px; padding-right: 20px; }
+    .cover h1 { font-size: 24px; }
+    .kpis { grid-template-columns: repeat(2, 1fr); }
+    .creatives { grid-template-columns: 1fr; }
+    th, td { padding: 9px 8px; font-size: 12px; }
+    .bar-row .nm { width: 70px; }
+  }
+  @media print { body { background: #fff; } .section { break-inside: avoid; } }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="cover">
+    <span class="badge">META AD REPORT</span>
+    <div class="cover-eyebrow">エステティック通信 × Meta広告</div>
+    <h1>Meta広告<span>配信レポート</span></h1>
+    <p class="sub">エステサロン・美容クリニック向けにご配信した、2クリエイティブ（遷移先：エス通WEB／LP）の実績と所感をご報告いたします。</p>
+    <div class="cover-footer">
+      <div>報告先<strong>アルファノート株式会社 御中</strong></div>
+      <div class="from">2026年9月29日<strong>株式会社新東通信 エステティック通信</strong></div>
+    </div>
+  </header>
+
+  <section class="section">
+    <span class="label">SUMMARY</span>
+    <h2>配信結果のサマリー</h2>
+    <div class="kpis">
+      <div class="kpi"><div class="k">合計インプレッション</div><div class="v">27,708</div><div class="n">WEB 1,963 ／ LP 25,745</div></div>
+      <div class="kpi"><div class="k">合計クリック（すべて）</div><div class="v">572</div><div class="n">WEB 44 ／ LP 528</div></div>
+      <div class="kpi"><div class="k">合計CV数（Contact）</div><div class="v">72</div><div class="n">WEB 1 ／ LP 71</div></div>
+      <div class="kpi hl"><div class="k">CV単価（LP）</div><div class="v">¥1,064</div><div class="n">WEB記事 ¥4,406</div></div>
+    </div>
+    <p class="foot">※ CV数はMetaピクセルの「Contact」イベント発火数です（詳細は「ご留意事項」をご参照ください）。</p>
+  </section>
+
+  <section class="section">
+    <span class="label">CREATIVE &amp; DESTINATION</span>
+    <h2>運用した<span class="pink">2つのクリエイティブ</span>と遷移先</h2>
+    <div class="creatives">
+      <div class="cr">
+        <img src="creative1.jpg" alt="クリエイティブ1：決済の専門家に聞く コース契約、その端末で大丈夫？">
+        <div class="body">
+          <span class="tag web">CREATIVE 1</span>
+          <h4>決済の専門家に聞く<br>コース契約、その端末で大丈夫？</h4>
+          <p>課題提起型の訴求。コース契約と決済端末の関係に「気づき」を与え、解説記事へ誘導するクリエイティブです。</p>
+          <div class="dest web">遷移先：エス通WEB（記事）</div>
+        </div>
+      </div>
+      <div class="cr">
+        <img src="creative2.jpg" alt="クリエイティブ2：回数券・コースメニューがあっても導入できる決済端末">
+        <div class="body">
+          <span class="tag lp">CREATIVE 2</span>
+          <h4>回数券・コースメニューが<br>あっても導入できる決済端末</h4>
+          <p>ベネフィット訴求＋「無料で資料請求」のCTA付き。他社で導入を断られた層も想定した、直接反応型のクリエイティブです。</p>
+          <div class="dest lp">遷移先：LP（資料請求）</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <span class="label">RESULTS</span>
+    <h2>配信実績データ</h2>
+    <table>
+      <thead><tr><th>指標</th><th>エス通WEB</th><th>LP</th></tr></thead>
+      <tbody>
+        <tr><td>インプレッション</td><td>1,963</td><td>25,745</td></tr>
+        <tr><td>リーチ</td><td>1,374</td><td>10,263</td></tr>
+        <tr><td>クリック（すべて）</td><td>44</td><td>528</td></tr>
+        <tr><td>クリック率</td><td>2.24%</td><td>2.05%</td></tr>
+        <tr><td>インプレッション単価（CPM）</td><td>¥2,244</td><td>¥2,934</td></tr>
+        <tr><td>クリック単価（リンククリック）</td><td>¥112</td><td>¥169</td></tr>
+        <tr><td>ALLクリック単価</td><td>¥100</td><td>¥143</td></tr>
+        <tr><td>CV数（Contact）</td><td>1</td><td>71</td></tr>
+        <tr class="key"><td>CV単価</td><td>¥4,406</td><td>¥1,064</td></tr>
+      </tbody>
+    </table>
+
+    <div class="bars">
+      <div class="bar-title">CV単価の比較（低いほど効率的）</div>
+      <div class="bar-row"><span class="nm">エス通WEB</span><div class="bar-track"><div class="bar web" style="width:100%">¥4,406</div></div></div>
+      <div class="bar-row"><span class="nm">LP</span><div class="bar-track"><div class="bar lp" style="width:24.2%">¥1,064</div></div></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <span class="label">INSIGHT</span>
+    <h2>レポート<span class="pink">所感</span></h2>
+    <ul class="insight">
+      <li><div class="num">1</div><div><b>クリック率は両遷移先とも2%超で、クリエイティブの訴求は安定して届いた</b><span>WEB 2.24%／LP 2.05%と大きな差はなく、「コース契約×決済端末」というテーマ自体がサロン・クリニック層の関心を捉えていたと考えられます。</span></div></li>
+      <li><div class="num">2</div><div><b>CV単価はLP遷移が ¥1,064 と良好。CV獲得の主力はLP</b><span>「無料で資料請求」を明示したクリエイティブとLPの組み合わせで、71件のCV（Contact）を獲得。CV単価はエス通WEB遷移の約1/4の水準でした。</span></div></li>
+      <li><div class="num">3</div><div><b>エス通WEBは「理解・信頼醸成」の役割。CVでの評価は限定的</b><span>記事遷移はCV数1件（配信ボリュームも約2,000imp）のため、単価の比較は参考値です。クリック単価はLPより低く、記事を読んで理解を深めてもらう入口としては効率的に機能しました。</span></div></li>
+      <li><div class="num">4</div><div><b>LPは配信ボリュームを確保でき、リーチ拡大にも寄与</b><span>約25,700impの配信に対し約10,300名へリーチ。認知拡大と反応獲得を同時に進められました。</span></div></li>
+    </ul>
+
+    <h3>今後のご提案</h3>
+    <div class="next">
+      <ul>
+        <li>CV獲得はLP遷移を軸に継続し、予算配分を優先的に寄せる</li>
+        <li>エス通WEB記事は、検討度の高い層への信頼醸成・リターゲティング用途として位置づけ、役割を分けて活用する</li>
+        <li>好反応だった訴求（コース契約・回数券への対応力）を軸に、クリエイティブの訴求角度を複数パターンで検証する</li>
+        <li>ピクセル計測を「問い合わせ完了ページ」のイベントに設定できれば、実質的な獲得単価の把握が可能になります（ご相談ください）</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <span class="label">NOTICE</span>
+    <h2>ご留意事項</h2>
+    <div class="note">
+      <h3>ピクセルのCV数について</h3>
+      <p>ピクセルのCV数の部分ですが、Metaピクセルでは「Contact」の発火数をCV数で計測しています。（先方の設定がLPを開いた時点で PageView ＋ Contact になっているため、この計測しかできませんでした。）</p>
+      <p>そのため、CV数は必ずしも実際の問い合わせ完了まで到達した数値ではない点をご把握くださいますようお願いいたします。</p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <strong>株式会社新東通信　エステティック通信</strong><br>
+    本レポートはアルファノート株式会社様向けの内容です。無断での二次配布はご遠慮ください。
+  </footer>
+
+</div>
+</body>
+</html>
